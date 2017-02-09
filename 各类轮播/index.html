@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>banner焦点轮播图</title>
+    <script src="js/util.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/move.js"></script>
+    <style>
+        *{padding:0;margin:0}
+        ul li{list-style:none}
+        a{text-decoration:none;color:#333;}
+        img{border:none;vertical-align: top;}
+        body{font-family: "微软雅黑";font-size:14px;}
+    </style>
+</head>
+<body>
+
+    <style>
+        #banner{width: 640px;height:260px;background:red;margin:50px auto;position: relative;overflow:hidden;}
+        .mk_banner_list li{display:none;}
+        .mk_banner_list li img{width:640px;height:260px;}
+        .mk_num{position:absolute;right:10px;bottom:10px;}
+        .mk_num li{height:20px;line-height: 20px;width:20px;background:#fff;margin:0 2px;text-align:center;float:left;}
+    </style>
+    <div id="banner">
+        <ul  class="mk_banner_list">
+            <li style="display: block;"><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+        <ul class="mk_num">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script>
+        //隐藏和显示版本
+        ready(function(){
+            var bannerDom = dom("banner");
+            //获取要改变的图片
+            var bannerUL = bannerDom.getElementsByTagName("ul")[0];
+            var liDoms = bannerUL.children;
+            //获取点击的轮播数字
+            var numUL = bannerDom.getElementsByTagName("ul")[1];
+            var numLis = numUL.children;
+
+            //给每个数字绑定点击事件
+            for(var i=0,len=numLis.length;i<len;i++){
+                numLis[i].index = i;
+                numLis[i].onclick = function(){
+                   for(var j=0,len=liDoms.length;j<len;j++){
+                        liDoms[j].style.display = "none";
+                   };
+                   liDoms[this.index].style.display ="block";
+                };
+            };
+        });
+    </script>
+    
+</body>
+</html>

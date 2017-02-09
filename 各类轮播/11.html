@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>仿FLASH的图片轮换效果 —— www.mengkedu.com梦柯教育</title>
+<script src="js/util.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/move.js"></script>
+<style>
+    body { background: #666; } ul { padding: 0; margin: 0; } li { list-style: none; } img { border: 0; }
+    .play { width: 400px; height: 430px; margin: 50px auto 0; background: #999; font: 12px Arial; }
+    .big_pic { width: 400px; height: 320px; overflow: hidden; border-bottom: 1px solid #ccc; background: #222; position: relative; }
+    .big_pic li { width: 400px; height: 320px; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 0; background: url(images/loading.gif) no-repeat center center; }
+    .mark_left { width: 200px; height: 320px; position: absolute; left: 0; top: 0; background: red; filter: alpha(opacity:0); opacity: 0; z-index:3000; }
+    .mark_right { width: 200px; height: 320px; position: absolute; left: 200px; top: 0; background: green; filter: alpha(opacity:0); opacity: 0; z-index:3000; }
+    .big_pic .prev { width: 60px; height: 60px; background: url(images/btn.gif) no-repeat; position: absolute; top: 130px; left: 10px; z-index: 3001; display: none; cursor: pointer; }
+    .big_pic .next { width: 60px; height: 60px; background: url(images/btn.gif) no-repeat 0 -60px; position: absolute; top: 130px; right: 10px; z-index: 3001; display: none;cursor: pointer; }
+    .big_pic .text { position: absolute; left: 10px; top: 302px; z-index: 3000; color: #ccc; }
+    .big_pic .length { position: absolute; right: 10px; bottom: 4px; z-index: 3000; color: #ccc; }
+    .big_pic img{width:100%;height:320px;}
+    .big_pic .bg { width: 400px; height: 25px; background: #000; filter: alpha(opacity=60); opacity: 0.6; position: absolute; z-index: 2999; bottom: 0; left: 0; }
+    .small_pic { width: 380px; height: 94px; position: relative; top: 7px; left: 10px;overflow:hidden;}
+    .small_pic ul { height: 94px; position: absolute; top: 0; left: 0; }
+    .small_pic li { width: 120px; height: 94px; float: left; padding-right: 10px; background: url(images/loading.gif) no-repeat center center; cursor: pointer; filter: alpha(opacity=60); opacity: 0.6; }
+    .small_pic img { width: 120px; height: 94px; }
+
+</style>
+</head>
+
+<body>
+<div id="playimages" class="play">
+    <ul class="big_pic">
+
+		<div class="prev"></div>
+		<div class="next"></div>
+		<div class="text">图片1</div>
+		<div class="length">计算图片数量……</div>
+		<a class="mark_left" href="javascript:;"></a>
+		<a class="mark_right" href="javascript:;"></a>
+		<div class="bg"></div>
+        <li style="z-index:1;"><img src="images/1.jpg" /></li>
+        <li><img src="images/2.jpg" /></li>
+        <li><img src="images/3.jpg" /></li>
+        <li><img src="images/4.jpg" /></li>
+        <li><img src="images/5.jpg" /></li>
+        <li><img src="images/6.jpg" /></li>
+        <<li><img src="images/110.jpg" /></li>
+        <li><img src="images/111.jpg" /></li>
+        <li><img src="images/112.jpg" /></li>
+        <li><img src="images/113.jpg" /></li>
+    </ul>
+    <div class="small_pic">
+        <ul>
+            <li title="图片1" style="filter: 100; opacity: 1;"><img src="images/1.jpg" /></li>
+            <li title="图片2"><img src="images/2.jpg" /></li>
+            <li title="图片3"><img src="images/3.jpg" /></li>
+            <li title="图片4"><img src="images/4.jpg" /></li>
+            <li title="图片5"><img src="images/5.jpg" /></li>
+            <li title="图片6"><img src="images/6.jpg" /></li>
+            <li><img src="images/110.jpg" /></li>
+            <li><img src="images/111.jpg" /></li>
+            <li><img src="images/112.jpg" /></li>
+            <li><img src="images/113.jpg" /></li>
+        </ul>
+    </div>
+
+    <script>
+        ready(function(){
+
+            //左右区域
+            var leftDom = document.getElementsByClassName("mark_left")[0];
+            var rightDom = document.getElementsByClassName("mark_right")[0];
+            //上一张
+            var prevDom = document.getElementsByClassName("prev")[0];
+            //下一张
+            var nextDom = document.getElementsByClassName("next")[0];
+
+            var textDom = document.getElementsByClassName("text")[0];
+            var lengthDom = document.getElementsByClassName("length")[0];
+
+            //小图片的li集合
+            var smallliDoms = document.getElementsByClassName("small_pic")[0].getElementsByTagName("li");
+            //小图片的外轮廓ul对象
+            var moveUL = document.getElementsByClassName("small_pic")[0].children[0];
+            //大图片的li集合
+            var bigLiDoms = document.getElementsByClassName("big_pic")[0].getElementsByTagName("li");
+            //拿到高度
+            var cheight = bigLiDoms[0].offsetHeight;
+            //获取小图的宽度 
+            var smallWidth = -smallliDoms[0].offsetWidth;
+
+            //控制大图片的层级关系的计数器
+            var zindex = 1;
+            //记录小图片的位置索引
+            var currentIndex = 0;
+            var playIndex = 0;
+            //元素的个数
+            var len = smallliDoms.length;
+            //定时器的返回值
+            var timer = null;
+            var ctimer = 1000;
+
+            //初始化代码
+            init();
+
+            //初始化代码
+            function init(){
+                //大图高度初始化
+                for(var i=0;i<bigLiDoms.length;i++){
+                    bigLiDoms[i].style.height = cheight+"px";
+                }
+                //小图片轮廓宽度计算
+                moveUL.style.width = smallliDoms[0].offsetWidth * len+"px";
+                 //控制索引的像素
+                lengthDom.innerHTML = (currentIndex+1)+"/"+len;
+                //控制左右按钮的显示
+                showRightLeft();
+                //小图片级联大图
+                changePic();
+                //上下张的事件绑定
+                prextNextEvent();
+                //自动轮播
+                autoPlay();
+            };
+
+            //自动播放
+            function autoPlay(){
+                timer = setInterval(function(){
+                    playIndex++;
+                    if(playIndex==len)playIndex = 0;
+                    currentIndex = playIndex;
+                    playMain();  
+                },ctimer);
+            };
+
+            function prextNextEvent(){
+                prevDom.onclick = function(){
+                    playIndex--;
+                    if(playIndex<=0)playIndex = len-1;
+                    currentIndex = playIndex;
+                    playMain();
+                };
+
+                nextDom.onclick = function(){
+                    playIndex++;
+                    if(playIndex==len)playIndex = 0;
+                    currentIndex = playIndex;
+                    playMain();
+                };
+            };
+
+            //控制图片切换的主方法
+            function playMain(){
+                zindex++;//层面提升
+                bigLiDoms[currentIndex].style.zIndex = zindex;    
+                bigLiDoms[currentIndex].style.height = 0;
+                mkAnimate(bigLiDoms[currentIndex],{height:cheight});         
+
+                //改变小图片的透明度 当前的图片1.其他同辈元素变成0.6
+                siblings(smallliDoms[currentIndex],function(){
+                    mkAnimate(this,{opacity:60});
+                });
+
+                mkAnimate(smallliDoms[currentIndex],{opacity:100});
+
+                //控制文字的级联
+                var title = smallliDoms[currentIndex].getAttribute("title");
+                textDom.innerHTML = title;
+                //控制索引的像素
+                lengthDom.innerHTML = (currentIndex+1)+"/"+len;
+
+                //改变小图的轮廓的位置    
+                if(currentIndex>1){
+                    var maxIndex = len -2;
+                    if(currentIndex>=maxIndex) currentIndex = maxIndex;
+                    mkAnimate(moveUL,{left:(currentIndex-1) *smallWidth})   
+                }else{
+                    mkAnimate(moveUL,{left:0}); 
+                }
+            };
+
+
+            //切换图片
+            function changePic(){
+                for(var i=0;i<smallliDoms.length;i++){
+                    smallliDoms[i].index = i;
+                    smallliDoms[i].onclick = function(){
+                        var index = this.index;
+                        playIndex = currentIndex = index;
+                        playMain();
+                    };
+
+                    smallliDoms[i].onmouseover = function(){
+                         clearInterval(timer);
+                    };
+
+                    smallliDoms[i].onmouseout = function(){
+                        autoPlay();
+                    };
+                }
+            };
+
+            //控制左右两侧的按钮显示
+            function showRightLeft(){
+                leftDom.onmouseover = showPrev;
+                leftDom.onmouseout = hidePrev;
+                prevDom.onmouseover = showPrev;
+                prevDom.onmouseout = hidePrev;
+
+
+                rightDom.onmouseover = showNext;
+                rightDom.onmouseout = hideNext;
+                nextDom.onmouseover = showNext;
+                nextDom.onmouseout = hideNext;
+            };
+
+
+            function showPrev(){
+                prevDom.style.display = "block";
+                clearInterval(timer);
+            }
+
+            function hidePrev(){
+                 prevDom.style.display = "none";
+                 autoPlay();
+            }
+
+            function showNext(){
+                 clearInterval(timer);
+                 nextDom.style.display = "block";
+            }
+
+            function hideNext(){
+                 nextDom.style.display = "none";
+                 autoPlay();
+            }
+
+        });
+
+    </script>
+</div>
+
+</body>
+</html>

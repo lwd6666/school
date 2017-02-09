@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>banner焦点轮播图</title>
+    <script src="js/util.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/move.js"></script>
+    <style>
+        *{padding:0;margin:0}
+        ul li{list-style:none}
+        a{text-decoration:none;color:#333;}
+        img{border:none;vertical-align: top;}
+        body{font-family: "微软雅黑";font-size:14px;}
+    </style>
+</head>
+<body>
+
+    <style>
+        #banner{width: 640px;height:260px;background:#333;margin:50px auto;position: relative;overflow:hidden;}
+        .mk_banner_list{width:1000%;}
+        .mk_banner_list li{position:absolute;top:0;left:0;}
+        .mk_banner_list li img{width:640px;height:260px;}
+        .mk_num{position:absolute;right:10px;bottom:10px;}
+        .mk_num li{height:20px;line-height: 20px;width:20px;background:#fff;margin:0 2px;text-align:center;float:left;}
+        .mk_num li.checked{background:red;color:#fff;}
+    </style>
+    <div id="banner">
+        <ul  class="mk_banner_list">
+            <li style="display: block;"><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+        <ul class="mk_num">
+            <li class="checked">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script>
+        //隐藏和显示版本
+        /*
+            1：第一张图片不动 先定位元素在左侧 
+            2: 如果滑动的索引比当前的索引要大，两个判断,改变当前图片的位置，新图图片进入轮播位置
+        */
+        ready(function(){
+            //获取当索引要轮播的li集合
+            var bannerLiDoms = document.getElementsByClassName("mk_banner_list")[0].children;
+            //获取数组li集合
+            var numLiDoms = document.getElementsByClassName("mk_num")[0].children;
+
+            var cwidth =bannerLiDoms[0].offsetWidth;
+
+            /* 1：第一张图片不动 先定位元素在左侧 */
+            for(var i=1;i<bannerLiDoms.length;i++){
+                bannerLiDoms[i].style.left = cwidth+"px";
+            }
+
+            var currentIndex = 0;
+            //循环给所有数字li绑定一个鼠标滑入事件
+            for(var i=0,len=numLiDoms.length;i<len;i++){
+                numLiDoms[i].onmouseover = function(){
+                   //获取当前的索引
+                   var index = getIndex(this);
+                   //同辈元素的选中删除
+                   siblings(this,function(){
+                     this.className = "";
+                   });
+                   //当前元素选中
+                   this.className = "checked"; 
+
+                   //如果当前的索引大于滑动索引 小到大 比如 0 ---> 3
+                   if(currentIndex < index){
+                        mkAnimate(bannerLiDoms[currentIndex],{left:-cwidth});
+                        bannerLiDoms[index].style.left = cwidth+"px";
+                   }else{
+                        mkAnimate(bannerLiDoms[currentIndex],{left:cwidth});
+                        bannerLiDoms[index].style.left = -cwidth+"px";
+                   }
+
+                   mkAnimate(bannerLiDoms[index],{left:0});
+                   //置换索引
+                   currentIndex = index;
+                };
+            }
+        });
+    </script>
+    
+</body>
+</html>
