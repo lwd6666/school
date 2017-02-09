@@ -1,0 +1,33 @@
+/*Í·²¿*/
+*{padding:0;margin:0;}
+body{width:1360px;margin:0 auto;}
+li{list-style:none;}
+a:link{text-decoration:none;color:#066;}
+a:hover{color:#960;text-decoration:none;}
+.tu3{width:35px;height:36px;position:absolute;margin-top:25px;margin-left:1197px;}
+.tu2{margin-left:145px;margin-top:25px;width:215px;height:50px;position:absolute;transition:1s ;}
+.tu2:hover{transform:rotate(10deg);}
+.haosou{border:1px solid #FF8000;width:430px;height:35px;position:absolute;margin-top:25px;margin-left:800px;}
+.hku{background:#F60;width:100px;height:35px;margin-left:800px;font-size:35px;}
+.sou1{width:80px;height:35px;position:absolute;margin-top:25px;margin-left:1240px;font-size:15px;font-family:"Î¢ÈíÑÅºÚ";color:#03C;line-height:35px;text-align:center;border:1px solid #6C3;}
+.ul li{float:left;margin:10px 0 0 50px;background:#80FFFF; padding:10px;width:70px;text-align:center;font-size:16px;font-weight:bolder;font-family:"ËÎÌå";}
+.ul{background:#80FFFF;width:1295px;height:60px;position:absolute;margin-top:80px;z-index:1;padding-left:65px;}
+#ull,#ull1,#ull2,#ull3,#ull4{display:none;}
+#ull li,#ull1 li,#ull2 li,#ull3 li,#ull4 li{margin-left:0px;padding-left:0px; }
+#ull,#ull1,#ull2,#ull3,#ull4{width:100px;height:200px;margin-top:8px;margin-bottom:-10px;}
+#xinul li{width:50px;height:50px;
+border-radius:45em;
+transform-origin:top left;
+transition:0.5s ;
+float:left;
+text-align:center;
+margin-left:15px;
+border:1px solid #903;font-size:16px;font-height:bolder;
+line-height:50px;
+font-family:"Î¢ÈíÑÅºÚ";}
+#xinul{margin-left:860px;margin-top:80px;width:490px;position:absolute; z-index:2}
+#xinul li:hover{transform:rotate(20deg);}
+/*Î²²¿*/
+.footer{margin:0 auto;width:1360px;height:230px;background:#fff;}
+.bqsm{width:900px;height:250px;margin-left:340px;margin-top:50px;}
+.bqsm ul li{padding:5px;margin:5px;font-size:12px;}

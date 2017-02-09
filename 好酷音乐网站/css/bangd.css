@@ -1,0 +1,26 @@
+﻿.main{width:1360px;height:1850px;}
+.neirong{background:red; fixed;width:1360px;height:1850px;}
+.lgdatu{background:#FFF;width:1360px;height:1850px;position:absolute;}
+#link3{border-bottom:3px solid red;border-top:3px solid red;padding:18px 16px 20px 16px;}
+#link,#link1,#link2,#link4{padding:18px 16px 20px 16px;}
+.bbdd{border:1px solid #D5D5D5;width:200px;height:1500px;position:absolute;left:145px;top:140px;}
+#mn{border-bottom:1px solid #F9F;margin:10px 20px 15px 20px;}
+.bbdd ul, h2{margin:10px 10px 10px 20px;}
+.bbdd img{width:50px;height:50px;}
+.bbdd span{margin-left:10px;position:relative;top:-20px;}
+.neidi,.gangt,.liux,.meig,.itu,.ktv{width:700px height:700px;}
+.neidi{position:absolute;top:150px;left:370px;}
+.neidi li a,.gangt li a,.liux li a,.meig li a,.itu li a,.ktv li a{margin-left:30px;font-size:18px;}
+.add{margin-left:225px;}
+.dv,.dv2,.dv4{border-bottom:1px solid blue;margin-top:10px;}
+.gangt{position:absolute;top:150px;left:815px;}
+.dv1,.dv3,.dv5{border-bottom:1px solid red;margin-top:10px;}
+.liux{position:absolute;top:725px;left:370px;}
+.meig{position:absolute;top:725px;left:815px;}
+.itu{position:absolute;top:1300px;left:370px;}
+.ktv{position:absolute;top:1300px;left:815px;}
+#gs{color:#0CF;}
+
+
+
+

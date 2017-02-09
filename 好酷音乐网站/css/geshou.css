@@ -1,0 +1,35 @@
+﻿.main{width:1360px;height:1300px;}
+.neirong{background:red; fixed;width:1360px;height:1250px;}
+.lgdatu{background:#fff;width:1360px;height:1250px;position:absolute;}
+#link1{border-bottom:3px solid red;border-top:3px solid red;padding:18px 16px 20px 16px;}
+#link,#link4,#link2,#link3{padding:18px 16px 20px 16px;}
+.gstu{width:1070px;height:280px;border:1px solid #CCC;position:absolute;top:140px;left:145px;}
+.tjgs ul{width:1060px;height:210px;top:40px;position:absolute;margin-left:10px;}
+.tjgs ul li{float:left;width:200px;height:200px;margin:5px;}
+.tjgs ul img{width:200px;height:200px;}
+.tjgs ul img{transition:all 0.8s}
+.tjgs ul img:hover{transform:scale(1.1);}
+#ww{text-align:center;width:200px;height:20px;display:inline-block;margin-top:5px;}
+.qbbd{width:100px;height:750px;position:absolute;top:430px;left:145px;}
+.qbbd ul li{margin-top:22px;padding-left:5px; }
+.bdd{font-size:24px;}
+.abc{width:950px;height:55px;padding:5px;top:445px;left:300px;position:absolute;}
+.abc ul li{float:left;margin-left:20px;}
+.abc ul li a:link{color:#000;padding:2px;}
+.abc ul li a:hover{background:#060;}
+#rrm{background:#060;padding:2px;font-weight:700;}
+#xhx{border-bottom:1px solid #ccc;width:893px;top:40px;position:absolute;margin-left:20px;}
+.tutu{width:915px;height:325px;top:485px ;left:300px;position:absolute;padding-top:15px;padding-left:14px;}
+.tutu ul img{width:171px;height:170px;transition:all 1s; }
+.tutu ul li a{margin-left:10px;width:171px;height:170px;display:inline-block;overflow:hidden;}
+.tutu ul img:hover{transform:scale(1.3);}
+#mx{position:absolute;z-index:1}
+.liebiao{width:1000px;height:270px;position:absolute;top:875px;left:230px;}
+.liebiao ul li a{margin-left:90px;display:inline-block;width:55px;height:20px;}
+.liebiao ul li{margin-bottom:30px;}
+.shuzi{width:425px;height:35px;position:absolute;top:1175px;left:462px;}
+.shuzi ul li a:hover{border:1px solid red;}
+.shuzi ul li a{width:35px;height:35px;border:1px solid #CCC;line-height:35px;text-align:center;float:left;display:inline-block;}
+#dy{background:#F33;color:#FFF;}
+.xyy{width:60px;height:35px;border:1px solid #ccc;position:absolute;line-height:35px;text-align:center;}
+

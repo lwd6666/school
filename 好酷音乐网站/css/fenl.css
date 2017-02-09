@@ -1,0 +1,28 @@
+﻿.main{width:1360px;height:1600px;margin:0 auto;}
+.neirong{background:red; fixed;width:1360px;height:1600px;}
+.lgdatu{background:#FFF;width:1360px;height:1600px;position:absolute;}
+#link2{border-bottom:3px solid red;border-top:3px solid red;padding:18px 16px 20px 16px;}
+#link,#link1,#link4,#link3{padding:18px 16px 20px 16px;}
+.refl{width:1000px;height:1420px;position:absolute;top:150px;left:305px;}
+.bv{border-bottom:1px dashed #E4E4E4;margin:10px 0px 10px 70px;width:850px; }
+.refl li a{margin-left:70px;display:inline-block;width:80px;height:25px;border:1px solid #FF8080;text-align:center;line-height:25px;}
+.refl li{margin-top:20px;}
+.refl li a:hover{background:#03C;color:#FFF;}
+.refl ul{margin-bottom:20px;}
+.paih{width:200px;height:668px;position:absolute;top:138px;left:145px;border:1px solid #FCF;}
+.paih ul li{margin-top:10px;padding-left:10px;background:#F6F6F6;  }
+.paih ul li:hover{background:#BFBFBF}
+h1{font-size:24px;font-weight:bolder;margin:10px 0 0 10px;}
+.bn{border-bottom:1px solid #999;margin:10px;width:180px; }
+#bs{color:#6F0;}
+.hdong{position:absolute;left:145px;top:820px;}
+.sfd{border:1px solid red;width:200px;background-color:#0F9;position:absolute;margin:5px 0 5px 0;}
+.sf{margin-left:75px;}
+.hdong p{display:inline-block;}
+.ss{width:2px;height:2px;background-color:#ff6600;}
+.dongt{position:absolute;left:145px;top:850px;}
+.dongt img{width:200px;height:80px;transition:all 0.5s;}
+.dongt li{margin-top:10px;font-size:14px;}
+.dongt img:hover{transform:scale(1.05);}
+
+
